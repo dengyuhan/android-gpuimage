@@ -23,7 +23,6 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
 import android.net.Uri;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -159,7 +158,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
                         data = null;
                         Bitmap bitmap = BitmapFactory.decodeFile(pictureFile.getAbsolutePath());
                         // mGPUImage.setImage(bitmap);
-                        final GLSurfaceView view = (GLSurfaceView) findViewById(R.id.surfaceView);
+                        final GLTextureView view = (GLTextureView) findViewById(R.id.surfaceView);
                         view.setRenderMode(GLTextureView.RENDERMODE_WHEN_DIRTY);
                         mGPUImage.saveToPictures(bitmap, "GPUImage",
                                 System.currentTimeMillis() + ".jpg",
