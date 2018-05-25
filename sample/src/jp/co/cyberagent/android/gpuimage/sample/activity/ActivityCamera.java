@@ -48,6 +48,7 @@ import jp.co.cyberagent.android.gpuimage.sample.GPUImageFilterTools.OnGpuImageFi
 import jp.co.cyberagent.android.gpuimage.sample.R;
 import jp.co.cyberagent.android.gpuimage.sample.utils.CameraHelper;
 import jp.co.cyberagent.android.gpuimage.sample.utils.CameraHelper.CameraInfo2;
+import jp.co.cyberagent.android.gpuimage.view.GLTextureView;
 
 public class ActivityCamera extends Activity implements OnSeekBarChangeListener, OnClickListener {
 
@@ -66,7 +67,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
         findViewById(R.id.button_capture).setOnClickListener(this);
 
         mGPUImage = new GPUImage(this);
-        mGPUImage.setGLSurfaceView((GLSurfaceView) findViewById(R.id.surfaceView));
+        mGPUImage.setGLTextureView((GLTextureView) findViewById(R.id.surfaceView));
 
         mCameraHelper = new CameraHelper(this);
         mCamera = new CameraLoader();
@@ -159,7 +160,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
                         Bitmap bitmap = BitmapFactory.decodeFile(pictureFile.getAbsolutePath());
                         // mGPUImage.setImage(bitmap);
                         final GLSurfaceView view = (GLSurfaceView) findViewById(R.id.surfaceView);
-                        view.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+                        view.setRenderMode(GLTextureView.RENDERMODE_WHEN_DIRTY);
                         mGPUImage.saveToPictures(bitmap, "GPUImage",
                                 System.currentTimeMillis() + ".jpg",
                                 new OnPictureSavedListener() {
@@ -169,7 +170,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
                                             uri) {
                                         pictureFile.delete();
                                         camera.startPreview();
-                                        view.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+                                        view.setRenderMode(GLTextureView.RENDERMODE_CONTINUOUSLY);
                                     }
                                 });
                     }
